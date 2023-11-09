@@ -26,18 +26,24 @@ function nascondi_numeri(){
         x++;
         // Permette all'utente di inserire un massimo di 5 numeri
         if(x<=5){
-            numeriUtente.push(parseInt(input.value));
-            // Al quinto input controlla se i numeri inseriti dall'utente sono uguali a quelli generati dal PC
-            if(x==5){
-                for(let i=0; i<5; i++){
-                    if(numeriPC[i]==numeriUtente[i]){
-                        indovinate++;
-                        console.log("Hai indovinato il numero in posizione " + (i+1) + "; Il numero era " + numeriPC[i]);
-                    }else{
-                        console.log("Non hai indovinato il numero in posizione " + (i+1) + "; Il numero estratto era " + numeriPC[i] + " mentre tu hai detto " + numeriUtente[i]);
+            if(input.value!=""){
+                numeriUtente.push(parseInt(input.value));
+                input.value = "";
+                // Al quinto input controlla se i numeri inseriti dall'utente sono uguali a quelli generati dal PC
+                if(x==5){
+                    for(let i=0; i<5; i++){
+                        if(numeriPC[i]==numeriUtente[i]){
+                            indovinate++;
+                            console.log("Hai indovinato il numero in posizione " + (i+1) + "; Il numero era " + numeriPC[i]);
+                        }else{
+                            console.log("Non hai indovinato il numero in posizione " + (i+1) + "; Il numero estratto era " + numeriPC[i] + " mentre tu hai detto " + numeriUtente[i]);
+                        }
                     }
+                    console.log("In totate hai indovinato " + indovinate + " numeri");
                 }
-                console.log("In totate hai indovinato " + indovinate + " numeri");
+            }else{
+                x--;
+                console.log("E provaci almeno!!!");
             }
         }
     });
