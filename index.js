@@ -1,22 +1,33 @@
-let divNumeri = document.getElementById("divNumeri");
-let numeriPC = [];
+// Recupera l'elemento div in cui mostrare i numeri
+const divNumeri = document.getElementById("divNumeri");
+// Inizializza un array vuoto in cui inserire i numeri generati dal PC
+const numeriPC = [];
+// Genera 5 numeri random, li manda a schermo e li inserisce nell'array
 for(let i=0; i<5; i++){
-    let numero = Math.trunc(Math.random() * 10 + 1);
+    const numero = Math.trunc(Math.random() * 10 + 1);
     divNumeri.append(numero + " ");
     numeriPC.push(numero);
 }
+// Inizializza la variabile che terrà il conto dei numeri inseriti dall'utente
 let x = 0;
+// Inizializza la variabile che terà il conto dei numeri indovinati dall'utente
 let indovinate = 0;
+// Funzione nascondi_numeri
 function nascondi_numeri(){
+    // Nasconde i numeri
     divNumeri.innerHTML = "";
-    let input = document.createElement("input");
+    // Crea l'input e il bottono Verifica e li appende in pagina
+    const input = document.createElement("input");
     divNumeri.appendChild(input);
-    let bottone = document.createElement("button");
+    const bottone = document.createElement("button");
     bottone.textContent = "Verifica";
+    // Aggiunge un eventListener sul bottono Verifica
     bottone.addEventListener("click", function(){
         x++;
+        // Permette all'utente di inserire un massimo di 5 numeri
         if(x<=5){
             numeriUtente.push(parseInt(input.value));
+            // Al quinto input controlla se i numeri inseriti dall'utente sono uguali a quelli generati dal PC
             if(x==5){
                 for(let i=0; i<5; i++){
                     if(numeriPC[i]==numeriUtente[i]){
@@ -33,4 +44,5 @@ function nascondi_numeri(){
     divNumeri.appendChild(bottone);
     let numeriUtente = [];
 }
-let nascondiNumeri = setTimeout(nascondi_numeri, 30000);
+// Invoca la funzione nascondi_numeri dopo 30 secondi dal caricamento della pagina
+const nascondiNumeri = setTimeout(nascondi_numeri, 3000);
